@@ -143,8 +143,7 @@ ALLOWED_ORIGINS = ["*"]
 
 CORS(
     app,
-    resources={r"/api/*": {"origins": ALLOWED_ORIGINS}},
-    supports_credentials=True,                           # allow cookies/Authorization
+    resources={r"/api/*": {"origins": ALLOWED_ORIGINS}},                         # allow cookies/Authorization
     allow_headers=["Authorization", "Content-Type"],     # match your client
     expose_headers=["Content-Disposition"],              # if you need to read these
     methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
