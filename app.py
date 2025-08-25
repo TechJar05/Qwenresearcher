@@ -136,8 +136,20 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# ✅ Enable CORS for all routes and origins
-CORS(app)
+
+
+
+ALLOWED_ORIGINS = ["*"]
+
+CORS(
+    app,
+    resources={r"/api/*": {"origins": ALLOWED_ORIGINS}},
+    supports_credentials=True,                           # allow cookies/Authorization
+    allow_headers=["Authorization", "Content-Type"],     # match your client
+    expose_headers=["Content-Disposition"],              # if you need to read these
+    methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    max_age=86400,                                       # cache preflight 24h
+)
 
 # OpenRouter API Key
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
